@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "mpi_code_loader": {
+      "commandName": "Project",
+      "commandLineArgs": "-r -f codes.csv"
+    }
+  }
+}
