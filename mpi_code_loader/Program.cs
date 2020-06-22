@@ -39,7 +39,7 @@ namespace mpi_code_loader
                 var line = reader.ReadLine();
                 var values = line.Split(',');
 
-                var code = new mPI_Code
+                var code = new MPI_Code
                 {
                     PartitionKey="codes",
                     RowKey = values[0],

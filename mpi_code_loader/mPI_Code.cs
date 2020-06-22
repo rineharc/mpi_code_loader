@@ -5,11 +5,11 @@ using System.Text;
 
 namespace mpi_code_loader
 {
-    class mPI_Code : TableEntity
+    class MPI_Code : TableEntity
     {
-        public mPI_Code() { }
+        public MPI_Code() { }
 
-        public mPI_Code(string code) {
+        public MPI_Code(string code) {
             PartitionKey = "codes";
             RowKey = code;
         }
