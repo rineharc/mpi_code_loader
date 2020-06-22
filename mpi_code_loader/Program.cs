@@ -18,21 +18,12 @@ namespace mpi_code_loader
                 .AddCommandLine(args)
                 .Build();
 
-            Console.WriteLine("Command line args:");
-
-            foreach (var arg in args)
-            {
-                Console.WriteLine(arg);
-            }
-
-            Console.WriteLine(Configuration["Connection_string"]);
-
             var storage = CloudStorageAccount.Parse(Configuration["Connection_string"]);
             var tblclient = storage.CreateCloudTableClient(new TableClientConfiguration());
             var table = tblclient.GetTableReference("mpicodes");
 
 
-            var reader = new StreamReader(File.OpenRead(@"C:\Users\crine\source\repos\mpi_code_loader\mpi_code_loader\Codes.csv"));
+            var reader = new StreamReader(File.OpenRead(args[0]));
 
             while (!reader.EndOfStream)
             {
@@ -49,9 +40,6 @@ namespace mpi_code_loader
                 TableOperation insertOperation = TableOperation.InsertOrMerge(code);
                 _ = table.Execute(insertOperation);
             }
-
-           
-            Console.WriteLine("Hello World!");
         }
     }
 }

@@ -2,7 +2,7 @@
   "profiles": {
     "mpi_code_loader": {
       "commandName": "Project",
-      "commandLineArgs": "-r -f codes.csv"
+      "commandLineArgs": "C:\\Users\\crine\\source\\repos\\mpi_code_loader\\mpi_code_loader\\Codes.csv"
     }
   }
 }
