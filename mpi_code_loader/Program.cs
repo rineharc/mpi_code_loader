@@ -25,6 +25,10 @@ namespace mpi_code_loader
 
             var reader = new StreamReader(File.OpenRead(args[0]));
 
+            var batch = new TableBatchOperation();
+            var batchCount = 0;
+            var current_batch = 1;
+
             while (!reader.EndOfStream)
             {
                 var line = reader.ReadLine();
@@ -37,9 +41,20 @@ namespace mpi_code_loader
                     Code = values[0],
                     URL = values[2]
                 };
-                TableOperation insertOperation = TableOperation.InsertOrMerge(code);
-                _ = table.Execute(insertOperation);
+                //TableOperation insertOperation = TableOperation.InsertOrMerge(code);
+                //_ = table.Execute(insertOperation);
+                batch.InsertOrReplace(code);
+                batchCount++;
+                if (batchCount == 100)
+                {
+                    Console.WriteLine("Executing batch {0}", current_batch);
+                    table.ExecuteBatch(batch);
+                    batch.Clear();
+                    batchCount = 0;
+                    current_batch++;
+                }
             }
+
         }
     }
 }
